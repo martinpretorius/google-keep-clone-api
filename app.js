@@ -68,8 +68,7 @@ app.patch("/api/note/:id", (req, res) => {
 
     try {
         note.title = req.body.title;          
-        note.text = text;
-        note.color = req.body.color;           
+        note.text = text;                  
         res.json(note);
     } catch (error) {
         res.status(500).send("Oops, something went wrong");
