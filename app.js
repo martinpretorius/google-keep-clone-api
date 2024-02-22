@@ -44,7 +44,7 @@ app.post("/api/note", (req, res) => {
         notes.push(note);
         res.json(note);
     } catch (error) {
-        res.status(500).send("Oops, something went wrong");
+        res.status(500).send("Oops, something went wrong!");
     }
 });
 
