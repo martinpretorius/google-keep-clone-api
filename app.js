@@ -27,16 +27,16 @@ app.get("/api/notes", (req, res) => {
 
 // create note
 app.post("/api/note", (req, res) => { 
-    const { text } = req.body;
+    const { title, text } = req.body;
 
-    if (!text) {
-        return res.status(400).send("Note text is required!");
+    if (!title && !text) {
+        return res.status(400).send("Note title or text is required!");
     }
     
     try {
         const note = {
             id: nanoid(),
-            title: req.body.title,          
+            title: title,          
             text: text,
             color: "white"
         };
@@ -50,11 +50,11 @@ app.post("/api/note", (req, res) => {
 
 // update note
 app.patch("/api/note/:id", (req, res) => {
-    const { text } = req.body;
+    const { title, text } = req.body;
     const id = req.params.id;
     const note = notes.find((note) => note.id === req.params.id);
 
-    if (!text) {
+    if (!title && !text) {
         return res.status(400).send("Note text is required!");
     }
     
@@ -67,7 +67,7 @@ app.patch("/api/note/:id", (req, res) => {
     }
 
     try {
-        note.title = req.body.title;          
+        note.title = title;          
         note.text = text;                  
         res.json(note);
     } catch (error) {
