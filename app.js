@@ -29,9 +29,9 @@ app.get("/api/notes", (req, res) => {
 app.post("/api/note", (req, res) => { 
     const { title, text } = req.body;
 
-    if (!title && !text) {
-        return res.status(400).send("Note title or text is required!");
-    }
+    // if (!title && !text) {
+    //     return res.status(400).send("Note title or text is required!");
+    // }
     
     try {
         const note = {
@@ -54,9 +54,9 @@ app.patch("/api/note/:id", (req, res) => {
     const id = req.params.id;
     const note = notes.find((note) => note.id === req.params.id);
 
-    if (!title && !text) {
-        return res.status(400).send("Note text is required!");
-    }
+    // if (!title && !text) {
+    //     return res.status(400).send("Note text is required!");
+    // }
     
     if (!id) {
         return res.status(400).send("Please provide a note ID!");
