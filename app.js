@@ -29,9 +29,9 @@ app.get("/api/notes", (req, res) => {
 app.post("/api/note", (req, res) => { 
     const { title, text } = req.body;
 
-    // if (!title && !text) {
-    //     return res.status(400).send("Note title or text is required!");
-    // }
+    if (!title && !text) {
+        return res.status(400).send("Note title or Note text is required!");
+    }
     
     try {
         const note = {
@@ -54,12 +54,12 @@ app.patch("/api/note/:id", (req, res) => {
     const id = req.params.id;
     const note = notes.find((note) => note.id === req.params.id);
 
-    // if (!title && !text) {
-    //     return res.status(400).send("Note text is required!");
-    // }
+    if (!title && !text) {
+        return res.status(400).send("Note title or Note text is required!");
+    }
     
     if (!id) {
-        return res.status(400).send("Please provide a note ID!");
+        return res.status(400).send("Please provide a Note ID!");
     }
     
     if (!note) {
@@ -86,7 +86,7 @@ app.patch("/api/note-color/:id", (req, res) => {
     }
     
     if (!id) {
-        return res.status(400).send("Please provide a note ID!");
+        return res.status(400).send("Please provide a Note ID!");
     }
     
     if (!note) {
@@ -106,7 +106,7 @@ app.delete("/api/note/:id", (req, res) => {
     const id = req.params.id;
 
     if (!id) {
-        return res.status(400).send("Please provide a note ID!");
+        return res.status(400).send("Please provide a Note ID!");
     }
 
     const note = notes.find((note) => note.id === req.params.id);
@@ -122,4 +122,3 @@ app.delete("/api/note/:id", (req, res) => {
         res.status(500).send("Oops, something went wrong");
     }
 })
-
